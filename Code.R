@@ -326,10 +326,6 @@ for (i in 1:B) {
   (ols_f <- formula(paste("blp~", as.character(f))[3]))
   apx <- ols(ols_f, data = bd, 
              sigma = 1, x = TRUE)
-  bw <- fastbw(apx, aics = 1e10)
-  keep <- rownames(bw$result)[bw$result[, "R2"] < 0.95]
-  
-  paste("blp ~", paste(term[names(term) %in% keep], collapse = " + "))
   
   # Generate prediction in both the BS sample and the original sample 
   bd$blp <- predict(bm, bd, type = "lp")
